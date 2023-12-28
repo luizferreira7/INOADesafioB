@@ -21,7 +21,7 @@ public class ConsoleTests
     {
         string[] args = [];
         
-        MissingArgumentException? missingArgumentException = Assert.Throws<MissingArgumentException>(() => runner.ReadArgs(args));
+        MissingArgumentException? missingArgumentException = Assert.Throws<MissingArgumentException>(() => runner.ParseArgs(args));
 
         Assert.That(missingArgumentException, Is.Not.Null);
         
@@ -33,7 +33,7 @@ public class ConsoleTests
     {
         string[] args = ["PETR4"];
         
-        MissingArgumentException? missingArgumentException = Assert.Throws<MissingArgumentException>(() => runner.ReadArgs(args));
+        MissingArgumentException? missingArgumentException = Assert.Throws<MissingArgumentException>(() => runner.ParseArgs(args));
 
         Assert.That(missingArgumentException, Is.Not.Null);
         
@@ -45,7 +45,7 @@ public class ConsoleTests
     {
         string[] args = ["PETR4", "22.67"];
         
-        MissingArgumentException? missingArgumentException = Assert.Throws<MissingArgumentException>(() => runner.ReadArgs(args));
+        MissingArgumentException? missingArgumentException = Assert.Throws<MissingArgumentException>(() => runner.ParseArgs(args));
 
         Assert.That(missingArgumentException, Is.Not.Null);
         
@@ -57,7 +57,7 @@ public class ConsoleTests
     {
         string[] args = ["PETR4", "22.67", "22.59"];
         
-        Arguments arguments = runner.ReadArgs(args);
+        Arguments arguments = runner.ParseArgs(args);
         
         Assert.That(arguments.stock, Is.EqualTo(PRET4));
         Assert.That(arguments.sellPrice, Is.EqualTo(SELLPRICE));
@@ -69,7 +69,7 @@ public class ConsoleTests
     {
         string[] args = ["PETR4", "22,67", "22,59"];
         
-        Arguments arguments = runner.ReadArgs(args);
+        Arguments arguments = runner.ParseArgs(args);
         
         Assert.That(arguments.stock, Is.EqualTo(PRET4));
         Assert.That(arguments.sellPrice, Is.EqualTo(SELLPRICE));
@@ -81,7 +81,7 @@ public class ConsoleTests
     {
         string[] args = ["PETR4", "TESTE", "22.59"];
         
-        Assert.Throws<ParseException>(() => runner.ReadArgs(args));
+        Assert.Throws<ParseException>(() => runner.ParseArgs(args));
     }
     
     [Test]
@@ -89,6 +89,6 @@ public class ConsoleTests
     {
         string[] args = ["PETR4", "22.67", "TESTE"];
         
-        Assert.Throws<ParseException>(() => runner.ReadArgs(args));
+        Assert.Throws<ParseException>(() => runner.ParseArgs(args));
     }
 }

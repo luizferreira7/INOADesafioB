@@ -6,10 +6,10 @@ public class Runner
 {
     public void Start(string[] args)
     {
-        Arguments arguments = ReadArgs(args);
+        Arguments arguments = ParseArgs(args);
     }
 
-    public Arguments ReadArgs(string[] args)
+    public Arguments ParseArgs(string[] args)
     {
         Arguments arguments = new Arguments();
 
@@ -54,9 +54,9 @@ public class Runner
             throw new MissingArgumentException(Label.BUY_PRICE, e);
         }
         
-        Console.WriteLine($"Ativo escolhido: {arguments.stock}");
-        Console.WriteLine($"Preço para venda: {arguments.sellPrice}");
-        Console.WriteLine($"Preço para compra: {arguments.buyPrice}");
+        Console.WriteLine($"{Label.STOCK}: {arguments.stock}");
+        Console.WriteLine($"{Label.SELL_PRICE}: {arguments.sellPrice}");
+        Console.WriteLine($"{Label.BUY_PRICE}: {arguments.buyPrice}");
 
         return arguments;
     }
