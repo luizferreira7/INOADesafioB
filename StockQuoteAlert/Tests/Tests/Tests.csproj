@@ -19,7 +19,7 @@
 
     <ItemGroup>
       <Reference Include="StockQuoteAlert">
-        <HintPath>..\..\StockQuoteAlert\obj\Debug\net8.0\StockQuoteAlert.dll</HintPath>
+        <HintPath>..\..\StockQuoteAlert\bin\Debug\net8.0\StockQuoteAlert.dll</HintPath>
       </Reference>
     </ItemGroup>
 
