@@ -1,3 +1,5 @@
+using System.Globalization;
+
 namespace StockQuoteAlert;
 
 public class Runner
@@ -17,25 +19,39 @@ public class Runner
         }
         catch (IndexOutOfRangeException e)
         {
-            throw new MissingArgumentExeption(Constants.STOCK, e);
+            throw new MissingArgumentException(Constants.STOCK, e);
         }
 
         try
         {
-            arguments.sellPrice = args[1];
+            if (double.TryParse(args[1].Replace(',', '.'), CultureInfo.InvariantCulture, out double value))
+            {
+                arguments.sellPrice = value;
+            }
+            else
+            {
+                throw new ParseException("double", args[1]);
+            }
         }
         catch (IndexOutOfRangeException e)
         {
-            throw new MissingArgumentExeption(Constants.SELL_PRICE, e);
+            throw new MissingArgumentException(Constants.SELL_PRICE, e);
         }
 
         try
         {
-            arguments.buyPrice = args[2];
+            if (double.TryParse(args[2].Replace(',', '.'), CultureInfo.InvariantCulture, out double value))
+            {
+                arguments.buyPrice = value;
+            }
+            else
+            {
+                throw new ParseException("double", args[2]);
+            }
         }
         catch (IndexOutOfRangeException e)
         {
-            throw new MissingArgumentExeption(Constants.BUY_PRICE, e);
+            throw new MissingArgumentException(Constants.BUY_PRICE, e);
         }
         
         Console.WriteLine($"Ativo escolhido: {arguments.stock}");
@@ -43,5 +59,9 @@ public class Runner
         Console.WriteLine($"Preço para compra: {arguments.buyPrice}");
 
         return arguments;
+    }
+
+    public Runner()
+    {
     }
 }

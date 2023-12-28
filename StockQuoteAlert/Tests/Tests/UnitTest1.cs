@@ -7,8 +7,8 @@ public class ConsoleTests
     private Runner runner;
 
     private const string PRET4 = "PETR4";
-    private const string SELLPRICE = "22.67";
-    private const string BUYPRICE = "22.59";
+    private const double SELLPRICE = 22.67;
+    private const double BUYPRICE = 22.59;
     
     [SetUp]
     public void Setup()
@@ -17,43 +17,43 @@ public class ConsoleTests
     }
 
     [Test]
-    public void RunnerArgumentsTest_NoArgument_MustThrowMissigArgumentExeception_ArgumentAtivo()
+    public void RunnerArgumentsTest_NoArgument_MustThrowMissigArgumentException_ArgumentAtivo()
     {
         string[] args = [];
         
-        MissingArgumentExeption? missingArgumentExeption = Assert.Throws<MissingArgumentExeption>(() => runner.ReadArgs(args));
+        MissingArgumentException? missingArgumentException = Assert.Throws<MissingArgumentException>(() => runner.ReadArgs(args));
 
-        Assert.That(missingArgumentExeption, Is.Not.Null);
+        Assert.That(missingArgumentException, Is.Not.Null);
         
-        Assert.That(missingArgumentExeption.Argument, Is.EqualTo(Constants.STOCK));
+        Assert.That(missingArgumentException.Argument, Is.EqualTo(Constants.STOCK));
     }
     
     [Test]
-    public void RunnerArgumentsTest_OneArgument_MustThrowMissigArgumentExeception_ArgumentPrecoVenda()
+    public void RunnerArgumentsTest_OneArgument_MustThrowMissigArgumentException_ArgumentPrecoVenda()
     {
         string[] args = ["PETR4"];
         
-        MissingArgumentExeption? missingArgumentExeption = Assert.Throws<MissingArgumentExeption>(() => runner.ReadArgs(args));
+        MissingArgumentException? missingArgumentException = Assert.Throws<MissingArgumentException>(() => runner.ReadArgs(args));
 
-        Assert.That(missingArgumentExeption, Is.Not.Null);
+        Assert.That(missingArgumentException, Is.Not.Null);
         
-        Assert.That(missingArgumentExeption.Argument, Is.EqualTo(Constants.SELL_PRICE));
+        Assert.That(missingArgumentException.Argument, Is.EqualTo(Constants.SELL_PRICE));
     }
     
     [Test]
-    public void RunnerArgumentsTest_TwoArgument_MustThrowMissigArgumentExeception_ArgumentPrecoCompra()
+    public void RunnerArgumentsTest_TwoArgument_MustThrowMissigArgumentException_ArgumentPrecoCompra()
     {
         string[] args = ["PETR4", "22.67"];
         
-        MissingArgumentExeption? missingArgumentExeption = Assert.Throws<MissingArgumentExeption>(() => runner.ReadArgs(args));
+        MissingArgumentException? missingArgumentException = Assert.Throws<MissingArgumentException>(() => runner.ReadArgs(args));
 
-        Assert.That(missingArgumentExeption, Is.Not.Null);
+        Assert.That(missingArgumentException, Is.Not.Null);
         
-        Assert.That(missingArgumentExeption.Argument, Is.EqualTo(Constants.BUY_PRICE));
+        Assert.That(missingArgumentException.Argument, Is.EqualTo(Constants.BUY_PRICE));
     }
     
     [Test]
-    public void RunnerArgumentsTest_ThreeArgument_MustReturnArgumentsClass()
+    public void RunnerArgumentsTest_ThreeArgumentWithDots_MustReturnArgumentsClass()
     {
         string[] args = ["PETR4", "22.67", "22.59"];
         
@@ -62,5 +62,33 @@ public class ConsoleTests
         Assert.That(arguments.stock, Is.EqualTo(PRET4));
         Assert.That(arguments.sellPrice, Is.EqualTo(SELLPRICE));
         Assert.That(arguments.buyPrice, Is.EqualTo(BUYPRICE));
+    }
+    
+    [Test]
+    public void RunnerArgumentsTest_ThreeArgumentWithComma_MustReturnArgumentsClass()
+    {
+        string[] args = ["PETR4", "22,67", "22,59"];
+        
+        Arguments arguments = runner.ReadArgs(args);
+        
+        Assert.That(arguments.stock, Is.EqualTo(PRET4));
+        Assert.That(arguments.sellPrice, Is.EqualTo(SELLPRICE));
+        Assert.That(arguments.buyPrice, Is.EqualTo(BUYPRICE));
+    }
+    
+    [Test]
+    public void RunnerArgumentsTest_WrongTypeForSellPrice_MustThrowParseException()
+    {
+        string[] args = ["PETR4", "TESTE", "22.59"];
+        
+        Assert.Throws<ParseException>(() => runner.ReadArgs(args));
+    }
+    
+    [Test]
+    public void RunnerArgumentsTest_WrongTypeForBuyPrice_MustThrowParseException()
+    {
+        string[] args = ["PETR4", "22.67", "TESTE"];
+        
+        Assert.Throws<ParseException>(() => runner.ReadArgs(args));
     }
 }
