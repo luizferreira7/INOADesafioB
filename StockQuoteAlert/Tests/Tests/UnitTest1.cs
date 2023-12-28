@@ -25,7 +25,7 @@ public class ConsoleTests
 
         Assert.That(missingArgumentException, Is.Not.Null);
         
-        Assert.That(missingArgumentException.Argument, Is.EqualTo(Constants.STOCK));
+        Assert.That(missingArgumentException.Argument, Is.EqualTo(Label.STOCK));
     }
     
     [Test]
@@ -37,7 +37,7 @@ public class ConsoleTests
 
         Assert.That(missingArgumentException, Is.Not.Null);
         
-        Assert.That(missingArgumentException.Argument, Is.EqualTo(Constants.SELL_PRICE));
+        Assert.That(missingArgumentException.Argument, Is.EqualTo(Label.SELL_PRICE));
     }
     
     [Test]
@@ -49,7 +49,7 @@ public class ConsoleTests
 
         Assert.That(missingArgumentException, Is.Not.Null);
         
-        Assert.That(missingArgumentException.Argument, Is.EqualTo(Constants.BUY_PRICE));
+        Assert.That(missingArgumentException.Argument, Is.EqualTo(Label.BUY_PRICE));
     }
     
     [Test]

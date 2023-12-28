@@ -19,7 +19,7 @@ public class Runner
         }
         catch (IndexOutOfRangeException e)
         {
-            throw new MissingArgumentException(Constants.STOCK, e);
+            throw new MissingArgumentException(Label.STOCK, e);
         }
 
         try
@@ -35,7 +35,7 @@ public class Runner
         }
         catch (IndexOutOfRangeException e)
         {
-            throw new MissingArgumentException(Constants.SELL_PRICE, e);
+            throw new MissingArgumentException(Label.SELL_PRICE, e);
         }
 
         try
@@ -51,7 +51,7 @@ public class Runner
         }
         catch (IndexOutOfRangeException e)
         {
-            throw new MissingArgumentException(Constants.BUY_PRICE, e);
+            throw new MissingArgumentException(Label.BUY_PRICE, e);
         }
         
         Console.WriteLine($"Ativo escolhido: {arguments.stock}");
