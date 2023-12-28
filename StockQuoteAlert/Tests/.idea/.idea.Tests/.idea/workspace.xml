@@ -5,12 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f88ccee4-9f0d-4579-9829-c11f8171af0b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../StockQuoteAlert/Exception/ParseException.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../StockQuoteAlert/Arguments.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../StockQuoteAlert/Arguments.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../StockQuoteAlert/MissingArgumentExeption.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../StockQuoteAlert/Exception/MissingArgumentException.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../StockQuoteAlert/Runner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../StockQuoteAlert/Runner.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Tests/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Tests/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/UnitTest1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/UnitTest1.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../StockQuoteAlert/StockQuoteAlert.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../StockQuoteAlert/StockQuoteAlert.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +54,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1703768877146</updated>
-      <workItem from="1703768878191" duration="7153000" />
+      <workItem from="1703768878191" duration="7725000" />
     </task>
     <servers />
   </component>
