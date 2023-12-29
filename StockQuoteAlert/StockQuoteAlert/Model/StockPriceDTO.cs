@@ -16,4 +16,9 @@ public class StockPriceDTO
         Price = price;
         Status = status;
     }
+    
+    public override string ToString()
+    {
+        return $"Stock: {Stock}, Price: {Price}, Status: {Status}";
+    }
 }
