@@ -6,6 +6,7 @@ using System;
 public class ValidationException : Exception
 {
     public string ErrorCode { get; }
+    public string Value { get; }
 
     public ValidationException(ValidationErrorCode validationErrorCode)
         : base(validationErrorCode.Message)
@@ -13,9 +14,10 @@ public class ValidationException : Exception
         ErrorCode = validationErrorCode.Code;
     }
 
-    public ValidationException(ValidationErrorCode validationErrorCode, Exception inner)
-        : base(validationErrorCode.Message, inner)
+    public ValidationException(ValidationErrorCode validationErrorCode, string value)
+        : base(validationErrorCode.Message + $" Value: {value}")
     {
         ErrorCode = validationErrorCode.Code;
+        Value = value;
     }
 }
