@@ -1,4 +1,5 @@
 using System.Text.Json;
+using StockQuoteAlert.Exception;
 using StockQuoteAlert.Model;
 
 namespace StockQuoteAlert.Business;
@@ -23,23 +24,21 @@ public class ResquestHandler
             if (response.IsSuccessStatusCode)
             {
                 var jsonString = await response.Content.ReadAsStringAsync();
-                Console.WriteLine($"Resposta da API: {jsonString}");
+                Console.WriteLine($"API response: {jsonString}");
                 return jsonString;
             }
             else
             {
-                Console.WriteLine($"Erro na requisição. Status Code: {response.StatusCode}");
+                throw new RequestErrorException(response.StatusCode.ToString());
             }
         }
         catch (Exception e)
         {
-            Console.WriteLine($"Erro na requisição: {e.Message}");
+            throw new RequestErrorException(e);
         }
-
-        return null;
     }
 
-    private string BuildQueryParam(Dictionary<string, string> paramMap)
+    protected string BuildQueryParam(Dictionary<string, string> paramMap)
     {
         if (!paramMap.Any())
         {
