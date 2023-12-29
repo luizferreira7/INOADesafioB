@@ -1,3 +1,4 @@
+using DotNetEnv;
 using StockQuoteAlert.Constants;
 using StockQuoteAlert.Exception;
 
@@ -7,9 +8,14 @@ public class DotEnvLoader
 {
     public DotEnvLoader()
     {
-        DotNetEnv.Env.Load();
+        Load();
     }
-
+    
+    public virtual void Load()
+    {
+        Env.Load();
+    }
+    
     public string GetEnvByKey(string key)
     {
         var env = Environment.GetEnvironmentVariable(key);

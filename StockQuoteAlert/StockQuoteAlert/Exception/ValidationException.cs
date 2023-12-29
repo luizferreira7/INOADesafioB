@@ -6,7 +6,7 @@ using System;
 public class ValidationException : Exception
 {
     public string ErrorCode { get; }
-    public string Value { get; }
+    public string? Value { get; }
 
     public ValidationException(ValidationErrorCode validationErrorCode)
         : base(validationErrorCode.Message)
