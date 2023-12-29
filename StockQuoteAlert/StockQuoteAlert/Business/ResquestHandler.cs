@@ -25,7 +25,7 @@ public class ResquestHandler
         }
     }
 
-    public async Task<string?> MakeRequest(string apiUrl, string path, Dictionary<string, string> paramMap)
+    public async Task<string> MakeRequest(string apiUrl, string path, Dictionary<string, string> paramMap)
     {
         var url = apiUrl + path + BuildQueryParam(paramMap);
             

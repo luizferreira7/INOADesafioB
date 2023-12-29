@@ -16,7 +16,7 @@ public class Parser
 
         try
         {
-            arguments.stock = args[0];
+            arguments.Stock = args[0];
         }
         catch (IndexOutOfRangeException e)
         {
@@ -27,7 +27,7 @@ public class Parser
         {
             if (double.TryParse(args[1].Replace(',', '.'), CultureInfo.InvariantCulture, out double value))
             {
-                arguments.sellPrice = value;
+                arguments.SellPrice = value;
             }
             else
             {
@@ -43,7 +43,7 @@ public class Parser
         {
             if (double.TryParse(args[2].Replace(',', '.'), CultureInfo.InvariantCulture, out double value))
             {
-                arguments.buyPrice = value;
+                arguments.BuyPrice = value;
             }
             else
             {
@@ -55,9 +55,9 @@ public class Parser
             throw new MissingArgumentException(Label.BUY_PRICE, e);
         }
         
-        Console.WriteLine($"{Label.STOCK}: {arguments.stock}");
-        Console.WriteLine($"{Label.SELL_PRICE}: {arguments.sellPrice}");
-        Console.WriteLine($"{Label.BUY_PRICE}: {arguments.buyPrice}");
+        Console.WriteLine($"{Label.STOCK}: {arguments.Stock}");
+        Console.WriteLine($"{Label.SELL_PRICE}: {arguments.SellPrice}");
+        Console.WriteLine($"{Label.BUY_PRICE}: {arguments.BuyPrice}");
 
         return arguments;
     }

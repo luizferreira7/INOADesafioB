@@ -65,9 +65,9 @@ public class ParserTests
         
         Arguments arguments = parser.ParseArgs(args);
         
-        Assert.That(arguments.stock, Is.EqualTo(PRET4));
-        Assert.That(arguments.sellPrice, Is.EqualTo(SELLPRICE));
-        Assert.That(arguments.buyPrice, Is.EqualTo(BUYPRICE));
+        Assert.That(arguments.Stock, Is.EqualTo(PRET4));
+        Assert.That(arguments.SellPrice, Is.EqualTo(SELLPRICE));
+        Assert.That(arguments.BuyPrice, Is.EqualTo(BUYPRICE));
     }
     
     [Test]
@@ -77,9 +77,9 @@ public class ParserTests
         
         Arguments arguments = parser.ParseArgs(args);
         
-        Assert.That(arguments.stock, Is.EqualTo(PRET4));
-        Assert.That(arguments.sellPrice, Is.EqualTo(SELLPRICE));
-        Assert.That(arguments.buyPrice, Is.EqualTo(BUYPRICE));
+        Assert.That(arguments.Stock, Is.EqualTo(PRET4));
+        Assert.That(arguments.SellPrice, Is.EqualTo(SELLPRICE));
+        Assert.That(arguments.BuyPrice, Is.EqualTo(BUYPRICE));
     }
     
     [Test]
