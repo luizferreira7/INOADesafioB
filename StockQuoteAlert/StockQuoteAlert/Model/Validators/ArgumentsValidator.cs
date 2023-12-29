@@ -19,7 +19,7 @@ public class ArgumentsValidator : IValidator
 
     private void BuyPriceBiggerThanSellPrice()
     {
-        if (Arguments.sellPrice > Arguments.buyPrice)
+        if (Arguments.buyPrice > Arguments.sellPrice)
         {
             throw new ValidationException(ValidationErrorCode.BUYPRICE_BIGGERTHAN_SELLPRICE);
         }
