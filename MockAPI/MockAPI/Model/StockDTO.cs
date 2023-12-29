@@ -22,4 +22,9 @@ public class StockDTO
         Low = low;
         Close = close;
     }
+    
+    public override string ToString()
+    {
+        return $"Date: {Date}, Stock: {Stock}, Open: {Open}, High: {High}, Low: {Low}, Close: {Close}";
+    }
 }

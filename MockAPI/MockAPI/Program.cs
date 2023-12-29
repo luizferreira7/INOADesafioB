@@ -1,4 +1,5 @@
 using MockAPI.Model;
+using MockAPI.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +23,10 @@ app.MapGet("/finance/stock_price", (string stock) =>
     {
         StockDTO stockDTO = new();
 
+        StockRepository stockRepository = new StockRepository();
+
+        Console.WriteLine(stockRepository.Stocks[0]);
+        
         return stock;
     })
     .WithName("GetStockPrice")
