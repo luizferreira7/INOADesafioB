@@ -40,13 +40,22 @@ public class Runner
         var priceReporter = new PriceReporter(arguments);
         stockPriceDto.Attach(priceReporter);
         
+        while (true)
+        {
+            await Routine(stockPriceDto, apiUrl, apiPath, paramMap);
+            Thread.Sleep(1000 * 60);
+        }
+    }
+
+    private async Task Routine(StockPriceDTO stockPriceDto, string apiUrl, string apiPath, Dictionary<string, string> paramMap)
+    {
         var resquestHandler = new ResquestHandler();
 
         var jsonString = await resquestHandler.MakeRequest(apiUrl, apiPath, paramMap);
-        
+    
         var stock = JsonSerializer.Deserialize<StockPriceDTO>(jsonString, _jsonConfig._caseInsensitiveSerializerSettings) 
                     ?? throw new InvalidOperationException("Value cannot be null");
-        
+    
         stockPriceDto.Price = stock.Price;
         stockPriceDto.Notify();
     }
