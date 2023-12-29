@@ -7,9 +7,9 @@ public class RunnerTests
 {
     private Runner runner;
     
-    private const string STOCK = "Ativo";
-    private const string SELL_PRICE = "Preço de venda";
-    private const string BUY_PRICE = "Preço de compra";
+    private const string STOCK = "Stock";
+    private const string SELL_PRICE = "Sell price";
+    private const string BUY_PRICE = "Buy price";
 
     private const string PRET4 = "PETR4";
     private const double SELLPRICE = 22.67;

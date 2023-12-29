@@ -2,7 +2,7 @@ namespace StockQuoteAlert.Constants;
 
 public static class Label
 {
-    public static string STOCK => "Ativo";
-    public static string SELL_PRICE => "Preço de venda";
-    public static string BUY_PRICE => "Preço de compra";
+    public static string STOCK => "Stock";
+    public static string SELL_PRICE => "Sell price";
+    public static string BUY_PRICE => "Buy price";
 }
