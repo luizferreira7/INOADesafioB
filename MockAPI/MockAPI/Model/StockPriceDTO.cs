@@ -1,17 +1,16 @@
 namespace MockAPI.Model;
 
-public class StockDTO
+public class StockPriceDTO
 {
     public string Stock { get; set; }
     public double Price { get; set; }
 
-    public StockDTO()
+    public StockPriceDTO()
     {
     }
 
-    public StockDTO(string stock, double price)
+    public StockPriceDTO(string stock)
     {
         Stock = stock;
-        Price = price;
     }
 }
