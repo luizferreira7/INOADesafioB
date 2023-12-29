@@ -1,6 +1,7 @@
 using System.Globalization;
 using StockQuoteAlert.Constants;
 using StockQuoteAlert.Exception;
+using StockQuoteAlert.Model.Validators;
 
 namespace StockQuoteAlert;
 
@@ -8,7 +9,11 @@ public class Runner
 {
     public void Start(string[] args)
     {
-        Arguments arguments = ParseArgs(args);
+        var arguments = ParseArgs(args);
+
+        var argumentsValidator = new ArgumentsValidator(arguments);
+        
+        argumentsValidator.Validate();
     }
 
     public Arguments ParseArgs(string[] args)

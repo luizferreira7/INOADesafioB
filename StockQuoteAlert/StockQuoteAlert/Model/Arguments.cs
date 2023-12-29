@@ -9,5 +9,11 @@ public class Arguments
     public Arguments()
     {
     }
-    
+
+    public Arguments(string? stock, double? sellPrice, double? buyPrice)
+    {
+        this.stock = stock;
+        this.sellPrice = sellPrice;
+        this.buyPrice = buyPrice;
+    }
 }

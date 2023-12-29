@@ -1,10 +1,15 @@
 using StockQuoteAlert;
+using StockQuoteAlert.Exception;
 
 namespace Tests;
 
-public class ConsoleTests
+public class RunnerTests
 {
     private Runner runner;
+    
+    private const string STOCK = "Ativo";
+    private const string SELL_PRICE = "Preço de venda";
+    private const string BUY_PRICE = "Preço de compra";
 
     private const string PRET4 = "PETR4";
     private const double SELLPRICE = 22.67;
@@ -25,7 +30,7 @@ public class ConsoleTests
 
         Assert.That(missingArgumentException, Is.Not.Null);
         
-        Assert.That(missingArgumentException.Argument, Is.EqualTo(Label.STOCK));
+        Assert.That(missingArgumentException.Argument, Is.EqualTo(STOCK));
     }
     
     [Test]
@@ -37,7 +42,7 @@ public class ConsoleTests
 
         Assert.That(missingArgumentException, Is.Not.Null);
         
-        Assert.That(missingArgumentException.Argument, Is.EqualTo(Label.SELL_PRICE));
+        Assert.That(missingArgumentException.Argument, Is.EqualTo(SELL_PRICE));
     }
     
     [Test]
@@ -49,7 +54,7 @@ public class ConsoleTests
 
         Assert.That(missingArgumentException, Is.Not.Null);
         
-        Assert.That(missingArgumentException.Argument, Is.EqualTo(Label.BUY_PRICE));
+        Assert.That(missingArgumentException.Argument, Is.EqualTo(BUY_PRICE));
     }
     
     [Test]
