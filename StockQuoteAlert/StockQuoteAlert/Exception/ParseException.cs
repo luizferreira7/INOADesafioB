@@ -1,6 +1,7 @@
-namespace StockQuoteAlert;
+namespace StockQuoteAlert.Exception;
+using System;
 
-public class ParseException: Exception
+public class ParseException : Exception
 {
     public string OriginType { get; }
     

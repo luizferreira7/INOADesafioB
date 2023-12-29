@@ -1,4 +1,6 @@
 using System.Globalization;
+using StockQuoteAlert.Constants;
+using StockQuoteAlert.Exception;
 
 namespace StockQuoteAlert;
 

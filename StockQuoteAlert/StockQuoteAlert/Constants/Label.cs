@@ -1,4 +1,4 @@
-namespace StockQuoteAlert;
+namespace StockQuoteAlert.Constants;
 
 public static class Label
 {
