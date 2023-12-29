@@ -33,13 +33,13 @@ app.UseHttpsRedirection();
 
 app.MapGet("/finance/stock_price", (string stock) =>
     {
-        List<StockData> stocks = stockDataRepository.GetStocks();
+        var service = new StockDataService(stockDataRepository);
+
+        var stockPrice = service.GetStockPriceDTO(stock);
         
-        Console.WriteLine(stocks[0]);
-        
-        return stock;
+        return stockPrice;
     })
     .WithName("GetStockPrice")
-    .WithOpenApi();
+    .WithOpenApi(stockPriceDto => stockPriceDto);
 
 app.Run();
