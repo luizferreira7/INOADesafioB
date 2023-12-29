@@ -1,5 +1,6 @@
 using System.Text.Json;
 using StockQuoteAlert.Business;
+using StockQuoteAlert.Config;
 using StockQuoteAlert.Constants;
 using StockQuoteAlert.Model.Validators;
 using StockQuoteAlert.Model;
@@ -9,11 +10,14 @@ namespace StockQuoteAlert;
 
 public class Runner
 {
+    private JsonConfig _jsonConfig;
+    
     public Runner()
     {
+        _jsonConfig = new JsonConfig();
     }
     
-    public void Start(string[] args)
+    public async void Start(string[] args)
     {
         var parser = new Parser();
         
@@ -30,27 +34,20 @@ public class Runner
 
         var paramMap = new Dictionary<string, string>();
 
-        if (arguments.stock is not null)
-        {
-            paramMap.Add(Params.STOCK_PARAM, arguments.stock);
-        
-            var resquestHandler = new ResquestHandler();
+        paramMap.Add(Params.STOCK_PARAM, arguments.Stock);
 
-            
-            var jsonString = resquestHandler.MakeRequest(apiUrl, apiPath, paramMap).Result;
+        var stockPriceDto = new StockPriceDTO(arguments.Stock);
+        var priceReporter = new PriceReporter(arguments);
+        stockPriceDto.Attach(priceReporter);
+        
+        var resquestHandler = new ResquestHandler();
 
-            if (jsonString is not null)
-            {
-                var options = new JsonSerializerOptions
-                {
-                    PropertyNameCaseInsensitive = true
-                };
+        var jsonString = await resquestHandler.MakeRequest(apiUrl, apiPath, paramMap);
         
-                var stock = JsonSerializer.Deserialize<StockPriceDTO>(jsonString, options);
+        var stock = JsonSerializer.Deserialize<StockPriceDTO>(jsonString, _jsonConfig._caseInsensitiveSerializerSettings) 
+                    ?? throw new InvalidOperationException("Value cannot be null");
         
-                Console.WriteLine(stock);
-            }
-            
-        }
+        stockPriceDto.Price = stock.Price;
+        stockPriceDto.Notify();
     }
 }
