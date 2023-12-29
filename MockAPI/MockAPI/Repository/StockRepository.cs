@@ -31,7 +31,7 @@ public class StockRepository
     {
         public StockDataMap()
         {
-            Map(s => s.Date).Name("date");
+            Map(s => s.Day).Name("day");
             Map(s => s.Stock).Name("stock");
             Map(s => s.Open).Name("open");
             Map(s => s.High).Name("high");

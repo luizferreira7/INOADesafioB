@@ -2,7 +2,7 @@ namespace MockAPI.Model;
 
 public class StockDTO
 {
-    public int Date { get; set; }
+    public int Day { get; set; }
     public string Stock { get; set; }
     public double Open { get; set; }
     public double High { get; set; }
@@ -13,9 +13,9 @@ public class StockDTO
     {
     }
 
-    public StockDTO(int date, string stock, double open, double high, double low, double close)
+    public StockDTO(int day, string stock, double open, double high, double low, double close)
     {
-        Date = date;
+        Day = day;
         Stock = stock;
         Open = open;
         High = high;
@@ -25,6 +25,6 @@ public class StockDTO
     
     public override string ToString()
     {
-        return $"Date: {Date}, Stock: {Stock}, Open: {Open}, High: {High}, Low: {Low}, Close: {Close}";
+        return $"Day: {Day}, Stock: {Stock}, Open: {Open}, High: {High}, Low: {Low}, Close: {Close}";
     }
 }
