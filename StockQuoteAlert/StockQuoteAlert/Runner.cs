@@ -25,20 +25,31 @@ public class Runner
         var apiPath = envLoader.GetEnvByKey(EnvironmentVariables.API_STOCK_PATH);
 
         var paramMap = new Dictionary<string, string>();
-        paramMap.Add(Params.STOCK_PARAM, arguments.stock);
-        
-        var resquestHandler = new ResquestHandler();
 
-        var jsonString = resquestHandler.MakeRequest(apiUrl, apiPath, paramMap).Result;
-        
-        JsonSerializerOptions options = new JsonSerializerOptions
+        if (arguments.stock is not null)
         {
-            PropertyNameCaseInsensitive = true
-        };
+            paramMap.Add(Params.STOCK_PARAM, arguments.stock);
         
-        StockPriceDTO? stock = JsonSerializer.Deserialize<StockPriceDTO>(jsonString, options);
+            var resquestHandler = new ResquestHandler();
+
+            
+            var jsonString = resquestHandler.MakeRequest(apiUrl, apiPath, paramMap).Result;
+
+            if (jsonString is not null)
+            {
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                };
         
-        Console.WriteLine(stock);
+                var stock = JsonSerializer.Deserialize<StockPriceDTO>(jsonString, options);
+        
+                Console.WriteLine(stock);
+            }
+            
+        }
+        
+        
     }
 
     public Arguments ParseArgs(string[] args)
