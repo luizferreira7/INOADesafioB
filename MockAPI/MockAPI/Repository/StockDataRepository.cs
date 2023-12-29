@@ -5,29 +5,44 @@ using CsvHelper.Configuration;
 
 namespace MockAPI.Repository;
 
-public class StockRepository
+public class StockDataRepository : IStockDataRepository
 {
-    public List<StockDTO> Stocks { get; set; }
 
-    public StockRepository()
+    private readonly StockDataDb _dbContext;
+
+    public StockDataRepository(StockDataDb stockDataDb)
     {
+        _dbContext = stockDataDb;
+    }
+    
+    public List<StockData> GetStocks()
+    {
+        return _dbContext.Stocks.ToList();
+    }
+    
+    public void InitStockDataInMemoryDb()
+    { 
         const string filename = "COTAHIST_2023.csv";
         var csvPath = Path.Combine(Environment.CurrentDirectory, @"Resources/", filename);
-        Stocks = GetAllStockData(csvPath);
+
+        var stocks = GetAllStockDataFromCsv(csvPath);
+        
+        _dbContext.Stocks.AddRange(stocks);
+        _dbContext.SaveChanges();
     }
 
-    public List<StockDTO> GetAllStockData(string csvPath)
+    public List<StockData> GetAllStockDataFromCsv(string csvPath)
     {
         using (var reader = new StreamReader(csvPath))
         using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
         {
             csv.Context.RegisterClassMap<StockDataMap>();
-            var records = csv.GetRecords<StockDTO>().ToList();
+            var records = csv.GetRecords<StockData>().ToList();
             return records;
         }
     }
     
-    private sealed class StockDataMap : ClassMap<StockDTO>
+    private sealed class StockDataMap : ClassMap<StockData>
     {
         public StockDataMap()
         {
