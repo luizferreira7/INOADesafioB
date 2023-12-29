@@ -1,36 +1,23 @@
-using System.Text.Json;
 using StockQuoteAlert.Exception;
-using StockQuoteAlert.Model;
 
 namespace StockQuoteAlert.Business;
 using System;
 
 public class ResquestHandler
 {
+    private HttpClient client;
+    
     public ResquestHandler()
     {
+        client = new HttpClient();
     }
 
-    public async Task<string?> MakeRequest(string apiUrl, string path, Dictionary<string, string> paramMap)
+    public async virtual Task<HttpResponseMessage> ExecuteRequest(string url)
     {
-        var client = new HttpClient();
-
         try
         {
-            var url = apiUrl + path + BuildQueryParam(paramMap);
-            
             var response = await client.GetAsync(url);
-
-            if (response.IsSuccessStatusCode)
-            {
-                var jsonString = await response.Content.ReadAsStringAsync();
-                Console.WriteLine($"API response: {jsonString}");
-                return jsonString;
-            }
-            else
-            {
-                throw new RequestErrorException(response.StatusCode.ToString());
-            }
+            return response;
         }
         catch (Exception e)
         {
@@ -38,7 +25,23 @@ public class ResquestHandler
         }
     }
 
-    protected string BuildQueryParam(Dictionary<string, string> paramMap)
+    public async Task<string?> MakeRequest(string apiUrl, string path, Dictionary<string, string> paramMap)
+    {
+        var url = apiUrl + path + BuildQueryParam(paramMap);
+            
+        var response = ExecuteRequest(url).Result;
+        
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new RequestErrorException((int) response.StatusCode);
+        }
+        
+        var jsonString = await response.Content.ReadAsStringAsync();
+        Console.WriteLine($"API response: {jsonString}");
+        return jsonString;
+    }
+
+    public string BuildQueryParam(Dictionary<string, string> paramMap)
     {
         if (!paramMap.Any())
         {

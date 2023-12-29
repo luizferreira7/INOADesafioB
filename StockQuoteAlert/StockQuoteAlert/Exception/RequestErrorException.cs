@@ -3,7 +3,7 @@ using System;
 
 public class RequestErrorException : Exception
 {
-    public string? Status { get; }
+    public int? Status { get; }
 
     public RequestErrorException()
         : base("Request failed.")
@@ -15,7 +15,7 @@ public class RequestErrorException : Exception
     {
     }
     
-    public RequestErrorException(string status)
+    public RequestErrorException(int status)
         : base($"Request failed with status: {status}")
     {
         Status = status;
