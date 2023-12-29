@@ -14,6 +14,21 @@ public class StockDataRepository : IStockDataRepository
     {
         _dbContext = stockDataDb;
     }
+
+    public StockData? GetStockByDayAndStock(int day, string stock)
+    {
+        List<StockData> stocksData = GetStocks();
+        
+        foreach (var stockData in stocksData)
+        {
+            if (stockData.Day == day && stockData.Stock == stock)
+            {
+                return stockData;
+            }
+        }
+
+        return null;
+    }
     
     public List<StockData> GetStocks()
     {
