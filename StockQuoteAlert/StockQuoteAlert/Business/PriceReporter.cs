@@ -4,11 +4,13 @@ namespace StockQuoteAlert.Business;
 
 public class PriceReporter : IObserver
 {
-    private Arguments Arguments;
+    private readonly Arguments _arguments;
+    private Sender _sender;
     
     public PriceReporter(Arguments arguments)
     {
-        Arguments = arguments;
+        _arguments = arguments;
+        _sender = new Sender();
     }
     
     public void Update(ISubject subject)
@@ -21,9 +23,12 @@ public class PriceReporter : IObserver
     {
         var stockPriceDto = (StockPriceDTO) subject;
         
-        if (stockPriceDto.Price <= Arguments.BuyPrice)
+        if (stockPriceDto.Price <= _arguments.BuyPrice)
         {
             Console.WriteLine("Time to buy.");
+            _sender.SendEmail($"{_arguments.Stock} Buy Alert", 
+                $"The stock you select has achieve the buy price.\n\n " +
+                $"Current price: {stockPriceDto.Price}, Buy price: {_arguments.BuyPrice}");
         }
     }
 
@@ -31,9 +36,12 @@ public class PriceReporter : IObserver
     {
         var stockPriceDto = (StockPriceDTO) subject;
         
-        if (stockPriceDto.Price >= Arguments.SellPrice)
+        if (stockPriceDto.Price >= _arguments.SellPrice)
         {
             Console.WriteLine("Time to sell.");
+            _sender.SendEmail($"{_arguments.Stock} Sell Alert", 
+                $"The stock you select has achieve the sell price.\n\n " +
+                $"Current price: {stockPriceDto.Price}, Sell price: {_arguments.SellPrice}");
         }
     }
 }
