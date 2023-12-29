@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f88ccee4-9f0d-4579-9829-c11f8171af0b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Tests/RequestHandlerTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../StockQuoteAlert/Business/ResquestHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../StockQuoteAlert/Business/ResquestHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../StockQuoteAlert/Exception/RequestErrorException.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../StockQuoteAlert/Exception/RequestErrorException.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Tests/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Tests/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StockQuoteAlert/Business/Parser.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../StockQuoteAlert/Runner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../StockQuoteAlert/Runner.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/RunnerTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/ParserTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +59,7 @@
       <option name="presentableId" value="Default" />
       <updated>1703768877146</updated>
       <workItem from="1703768878191" duration="8636000" />
-      <workItem from="1703857306507" duration="8617000" />
+      <workItem from="1703857306507" duration="8945000" />
     </task>
     <servers />
   </component>
