@@ -1,43 +1,57 @@
+using MockAPI.Constants;
 using MockAPI.Exceptions;
 using MockAPI.Model;
 using MockAPI.Repository;
 
-namespace MockAPI;
+namespace MockAPI.Service;
 
 public sealed class StockDataService(IStockDataRepository stockDataRepository)
 {
+
     public StockPriceDTO GetStockPriceDTO(string stock)
     {
-        DateTime date = DateTime.Now;
+        var date = DateTime.Now;
 
-        int day = date.Day;
+        var day = date.Day;
         
-        StockData? stockData = stockDataRepository.GetStockByDayAndStock(day, stock);
+        var stockData = stockDataRepository.GetStockByDayAndStock(day, stock);
 
         if (stockData is null)
         {
             throw new ResourceNotFoundException(stock);
         }
 
-        StockPriceDTO stockPriceDto = new StockPriceDTO(stock);
+        var stockPriceDto = new StockPriceDTO(stock);
 
-        if (date.Hour >= 17 || date.Hour < 10 || (date.Hour == 10 && date.Minute == 0))
+        switch (true)
         {
-            stockPriceDto.Price = stockData.Close;
-        }
-        else if (date.Hour == 9 && date.Minute >= 45)
-        {
-            stockPriceDto.Price = stockData.Open;
-        }
-        else
-        {
-            var random = new Random();
-            
-            var price = stockData.Low + random.NextDouble() * (stockData.High - stockData.Low);
+            case var _ when IsPreOpen(date):
+                stockPriceDto.Price = stockData.Open;
+                stockPriceDto.Status = Status.OPEN;
+                break;
 
-            stockPriceDto.Price = price;
+            case var _ when IsClose(date):
+                stockPriceDto.Price = stockData.Close;
+                stockPriceDto.Status = Status.CLOSE;
+                break;
+
+            default:
+                var random = new Random();
+                stockPriceDto.Price = stockData.Low + random.NextDouble() * (stockData.High - stockData.Low);
+                stockPriceDto.Status = Status.CURRENT;
+                break;
         }
 
         return stockPriceDto;
+    }
+
+    private static bool IsPreOpen(DateTime date)
+    {
+        return date.Hour == 9 & date.Minute >= 45;
+    }
+
+    private static bool IsClose(DateTime date)
+    {
+        return date.Hour >= 17 | date.Hour < 10;
     }
 }

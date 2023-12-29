@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using MockAPI;
+using MockAPI.Service;
 using MockAPI.Exceptions;
 using MockAPI.Repository;
 
