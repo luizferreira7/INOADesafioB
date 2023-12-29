@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using MockAPI;
-using MockAPI.Model;
+using MockAPI.Exceptions;
 using MockAPI.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +15,11 @@ builder.Services.AddScoped<IStockDataRepository, StockDataRepository>();
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 var app = builder.Build();
+
+app.UseExceptionHandler(exceptionHandlerApp 
+    => exceptionHandlerApp.Run(async context 
+        => await Results.Problem()
+            .ExecuteAsync(context)));
 
 var stockDataDb = app.Services.CreateScope().ServiceProvider.GetRequiredService<StockDataDb>();
 await stockDataDb.Database.EnsureCreatedAsync();
@@ -35,9 +40,19 @@ app.MapGet("/finance/stock_price", (string stock) =>
     {
         var service = new StockDataService(stockDataRepository);
 
-        var stockPrice = service.GetStockPriceDTO(stock);
-        
-        return stockPrice;
+        try
+        {
+            var stockPrice = service.GetStockPriceDTO(stock);
+
+            return Results.Ok(stockPrice);
+        }
+        catch (ResourceNotFoundException e)
+        {
+            Console.WriteLine(e.StackTrace);
+            Console.WriteLine(e.Message);
+            
+            return Results.NotFound();
+        }
     })
     .WithName("GetStockPrice")
     .WithOpenApi(stockPriceDto => stockPriceDto);
