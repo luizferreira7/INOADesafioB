@@ -19,7 +19,7 @@ public class RequestHandlerTests
     private const int STATUS_404 = 404;
     private const int STATUS_500 = 500;
     
-    private class MockRequestHandler : ResquestHandler
+    private class MockRequestHandler : RequestHandler
     {
         private HttpResponseMessage HttpResponseMessage;
 

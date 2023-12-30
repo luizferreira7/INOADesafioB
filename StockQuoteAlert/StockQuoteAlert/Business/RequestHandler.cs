@@ -1,13 +1,14 @@
+using StockQuoteAlert.Constants;
 using StockQuoteAlert.Exceptions;
 
 namespace StockQuoteAlert.Business;
 using System;
 
-public class ResquestHandler
+public class RequestHandler
 {
     private HttpClient client;
     
-    public ResquestHandler()
+    public RequestHandler()
     {
         client = new HttpClient();
     }
@@ -21,7 +22,7 @@ public class ResquestHandler
         }
         catch (Exception e)
         {
-            throw new RequestErrorException(e);
+            throw new ValidationException(ValidationErrorCode.API_CANT_CONNECT, e);
         }
     }
 
