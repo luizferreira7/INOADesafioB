@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f88ccee4-9f0d-4579-9829-c11f8171af0b" name="Changes" comment="" />
+    <list default="true" id="f88ccee4-9f0d-4579-9829-c11f8171af0b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../StockQuoteAlert/Business/PriceReporter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../StockQuoteAlert/Business/PriceReporter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../StockQuoteAlert/Business/Sender.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../StockQuoteAlert/Business/Sender.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../StockQuoteAlert/Runner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../StockQuoteAlert/Runner.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Tests/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Tests/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/ValidatorTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/ValidatorTests.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,6 +20,8 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/../StockQuoteAlert/Business/PriceReporter.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../StockQuoteAlert/Model/StockPriceDTO.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../StockQuoteAlert/Model/Validators/ArgumentsValidator.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../StockQuoteAlert/Utility/DotEnvLoader.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -58,7 +66,8 @@
       <workItem from="1703857306507" duration="9329000" />
       <workItem from="1703878312967" duration="2046000" />
       <workItem from="1703943939293" duration="850000" />
-      <workItem from="1703963522997" duration="1079000" />
+      <workItem from="1703963522997" duration="3897000" />
+      <workItem from="1703967441690" duration="305000" />
     </task>
     <servers />
   </component>

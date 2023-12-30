@@ -43,8 +43,10 @@ public class Runner
 
             paramMap.Add(Params.STOCK_PARAM, arguments.Stock);
 
+            var sender = new Sender();
+            
             var stockPriceDto = new StockPriceDTO(arguments.Stock);
-            var priceReporter = new PriceReporter(arguments);
+            var priceReporter = new PriceReporter(arguments, sender);
             stockPriceDto.Attach(priceReporter);
 
             while (true)

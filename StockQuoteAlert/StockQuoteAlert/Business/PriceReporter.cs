@@ -4,44 +4,57 @@ namespace StockQuoteAlert.Business;
 
 public class PriceReporter : IObserver
 {
-    private readonly Arguments _arguments;
+    protected readonly Arguments _arguments;
     private Sender _sender;
-    
-    public PriceReporter(Arguments arguments)
+    public string _emailSubject { get; set; } = "";
+    public string _emailBody { get; set; } = "";
+    public bool _targetReached { get; set; }
+
+    public PriceReporter(Arguments arguments, Sender sender)
     {
         _arguments = arguments;
-        _sender = new Sender();
+        _sender = sender;
+        _targetReached = false;
     }
     
     public void Update(ISubject subject)
     {
+        _targetReached = false;
+        
         checkSellPrice(subject);
         checkBuyPrice(subject);
+
+        if (_targetReached)
+        {
+            _sender.SendEmail(_emailSubject, _emailBody);
+        }
     }
 
-    public void checkBuyPrice(ISubject subject)
+    private void checkBuyPrice(ISubject subject)
     {
         var stockPriceDto = (StockPriceDTO) subject;
         
         if (stockPriceDto.Price <= _arguments.BuyPrice)
         {
             Console.WriteLine("Time to buy.");
-            _sender.SendEmail($"{_arguments.Stock} Buy Alert", 
-                $"The selected stock has reached the target buy price.\n\n " +
-                $"Current price: {stockPriceDto.Price}, Buy price: {_arguments.BuyPrice}");
+            _emailSubject = $"{_arguments.Stock} Buy Alert";
+            _emailBody = $"The selected stock {_arguments.Stock} has reached the target buy price.\n\n " +
+                         $"Current price: {stockPriceDto.Price}, Buy price: {_arguments.BuyPrice}";
+            _targetReached = true;
         }
     }
 
-    public void checkSellPrice(ISubject subject)
+    private void checkSellPrice(ISubject subject)
     {
         var stockPriceDto = (StockPriceDTO) subject;
         
         if (stockPriceDto.Price >= _arguments.SellPrice)
         {
             Console.WriteLine("Time to sell.");
-            _sender.SendEmail($"{_arguments.Stock} Sell Alert", 
-                $"The selected stock has reached the target sell price.\n\n " +
-                $"Current price: {stockPriceDto.Price}, Sell price: {_arguments.SellPrice}");
+            _emailSubject = $"{_arguments.Stock} Sell Alert";
+            _emailBody = $"The selected stock {_arguments.Stock} has reached the target sell price.\n\n " +
+                         $"Current price: {stockPriceDto.Price}, Sell price: {_arguments.SellPrice}";
+            _targetReached = true;
         }
     }
 }

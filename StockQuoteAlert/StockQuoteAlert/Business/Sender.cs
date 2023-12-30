@@ -7,30 +7,21 @@ namespace StockQuoteAlert.Business;
 
 public class Sender
 {
-    private readonly string _smtpServer;
-    private readonly int _smtpPort;
+    private string? _smtpServer;
+    private int _smtpPort;
 
-    private readonly string _smtpUser;
-    private readonly string _smtpPassword;
+    private string? _smtpUser;
+    private string? _smtpPassword;
 
-    private readonly string _senderEmail;
-    private readonly string _receiverEmail;
+    private string? _senderEmail;
+    private string? _receiverEmail;
     
     public Sender()
     {
-        var envLoader = new DotEnvLoader();
-
-        _smtpServer = envLoader.GetEnvByKey(EnvironmentVariables.SMTP_SERVER);
-        _smtpPort = int.Parse(envLoader.GetEnvByKey(EnvironmentVariables.SMTP_PORT));
-        
-        _smtpUser = envLoader.GetEnvByKey(EnvironmentVariables.SMTP_USER);
-        _smtpPassword = envLoader.GetEnvByKey(EnvironmentVariables.SMTP_PASSWORD);
-        
-        _senderEmail = envLoader.GetEnvByKey(EnvironmentVariables.SMTP_SENDER);
-        _receiverEmail = envLoader.GetEnvByKey(EnvironmentVariables.SMTP_RECEIVER);
+        ReadEnv();
     }
 
-    public void SendEmail(string subject, string body)
+    public virtual void SendEmail(string subject, string body)
     {
         SmtpClient smtpClient = new SmtpClient(_smtpServer);
         
@@ -38,7 +29,7 @@ public class Sender
         smtpClient.Credentials = new NetworkCredential(_smtpUser, _smtpPassword);
         smtpClient.EnableSsl = true;
         
-        MailMessage mailMessage = new MailMessage(_senderEmail, _receiverEmail, subject, body);
+        MailMessage mailMessage = new MailMessage(_senderEmail ?? string.Empty, _receiverEmail ?? string.Empty, subject, body);
         mailMessage.BodyEncoding = System.Text.Encoding.UTF8;
         mailMessage.SubjectEncoding = System.Text.Encoding.UTF8;
 
@@ -51,5 +42,19 @@ public class Sender
         {
             Console.WriteLine($"Error while sending email: {e.Message}");
         }
+    }
+
+    protected virtual void ReadEnv()
+    {
+        var envLoader = new DotEnvLoader();
+        
+        _smtpServer = envLoader.GetEnvByKey(EnvironmentVariables.SMTP_SERVER);
+        _smtpPort = int.Parse(envLoader.GetEnvByKey(EnvironmentVariables.SMTP_PORT));
+        
+        _smtpUser = envLoader.GetEnvByKey(EnvironmentVariables.SMTP_USER);
+        _smtpPassword = envLoader.GetEnvByKey(EnvironmentVariables.SMTP_PASSWORD);
+        
+        _senderEmail = envLoader.GetEnvByKey(EnvironmentVariables.SMTP_SENDER);
+        _receiverEmail = envLoader.GetEnvByKey(EnvironmentVariables.SMTP_RECEIVER);
     }
 }
