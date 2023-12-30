@@ -1,4 +1,4 @@
-using StockQuoteAlert.Exception;
+using StockQuoteAlert.Exceptions;
 
 namespace StockQuoteAlert.Business;
 using System;

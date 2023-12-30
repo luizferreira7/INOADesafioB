@@ -1,7 +1,6 @@
 using StockQuoteAlert.Constants;
 
-namespace StockQuoteAlert.Exception;
-using System;
+namespace StockQuoteAlert.Exceptions;
 
 public class ValidationException : Exception
 {

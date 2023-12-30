@@ -1,7 +1,7 @@
 using System.Net;
 using System.Text;
 using StockQuoteAlert.Business;
-using StockQuoteAlert.Exception;
+using StockQuoteAlert.Exceptions;
 
 namespace Tests;
 

@@ -1,6 +1,6 @@
 using StockQuoteAlert;
 using StockQuoteAlert.Model.Validators;
-using StockQuoteAlert.Exception;
+using StockQuoteAlert.Exceptions;
 
 namespace Tests;
 

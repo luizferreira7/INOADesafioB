@@ -1,4 +1,4 @@
-using StockQuoteAlert.Exception;
+using StockQuoteAlert.Exceptions;
 using StockQuoteAlert.Utility;
 
 namespace Tests;

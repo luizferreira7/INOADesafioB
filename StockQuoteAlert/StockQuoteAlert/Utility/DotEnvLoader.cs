@@ -1,6 +1,6 @@
 using DotNetEnv;
 using StockQuoteAlert.Constants;
-using StockQuoteAlert.Exception;
+using StockQuoteAlert.Exceptions;
 
 namespace StockQuoteAlert.Utility;
 

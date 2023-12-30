@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f88ccee4-9f0d-4579-9829-c11f8171af0b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../StockQuoteAlert/Business/Sender.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../StockQuoteAlert/Business/PriceReporter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../StockQuoteAlert/Business/PriceReporter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../StockQuoteAlert/Constants/EnvironmentVariables.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../StockQuoteAlert/Constants/EnvironmentVariables.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Tests/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Tests/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="f88ccee4-9f0d-4579-9829-c11f8171af0b" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -61,7 +56,7 @@
       <updated>1703768877146</updated>
       <workItem from="1703768878191" duration="8636000" />
       <workItem from="1703857306507" duration="9329000" />
-      <workItem from="1703878312967" duration="1860000" />
+      <workItem from="1703878312967" duration="2046000" />
     </task>
     <servers />
   </component>

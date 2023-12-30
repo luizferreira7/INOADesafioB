@@ -1,7 +1,7 @@
 using System.Globalization;
 
 namespace StockQuoteAlert.Business;
-using Exception;
+using Exceptions;
 using Constants;
 
 public class Parser
@@ -13,7 +13,7 @@ public class Parser
     public Arguments ParseArgs(string[] args)
     {
         Arguments arguments = new Arguments();
-
+        
         try
         {
             arguments.Stock = args[0];

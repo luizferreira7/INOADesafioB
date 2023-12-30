@@ -1,5 +1,5 @@
 using StockQuoteAlert;
-using StockQuoteAlert.Exception;
+using StockQuoteAlert.Exceptions;
 using StockQuoteAlert.Business;
 
 namespace Tests;

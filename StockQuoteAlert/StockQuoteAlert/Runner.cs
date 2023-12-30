@@ -19,31 +19,40 @@ public class Runner
     
     public async void Start(string[] args)
     {
-        var parser = new Parser();
-        
-        var arguments = parser.ParseArgs(args);
-
-        var argumentsValidator = new ArgumentsValidator(arguments);
-        
-        argumentsValidator.Validate();
-
-        var envLoader = new DotEnvLoader();
-
-        var apiUrl = envLoader.GetEnvByKey(EnvironmentVariables.API_URL);
-        var apiPath = envLoader.GetEnvByKey(EnvironmentVariables.API_STOCK_PATH);
-
-        var paramMap = new Dictionary<string, string>();
-
-        paramMap.Add(Params.STOCK_PARAM, arguments.Stock);
-
-        var stockPriceDto = new StockPriceDTO(arguments.Stock);
-        var priceReporter = new PriceReporter(arguments);
-        stockPriceDto.Attach(priceReporter);
-        
-        while (true)
+        try
         {
-            await Routine(stockPriceDto, apiUrl, apiPath, paramMap);
-            Thread.Sleep(1000 * 60);
+
+            var parser = new Parser();
+
+            var arguments = parser.ParseArgs(args);
+
+            var argumentsValidator = new ArgumentsValidator(arguments);
+
+            argumentsValidator.Validate();
+
+            var envLoader = new DotEnvLoader();
+
+            var apiUrl = envLoader.GetEnvByKey(EnvironmentVariables.API_URL);
+            var apiPath = envLoader.GetEnvByKey(EnvironmentVariables.API_STOCK_PATH);
+
+            var paramMap = new Dictionary<string, string>();
+
+            paramMap.Add(Params.STOCK_PARAM, arguments.Stock);
+
+            var stockPriceDto = new StockPriceDTO(arguments.Stock);
+            var priceReporter = new PriceReporter(arguments);
+            stockPriceDto.Attach(priceReporter);
+
+            while (true)
+            {
+                await Routine(stockPriceDto, apiUrl, apiPath, paramMap);
+                Thread.Sleep(1000 * 60);
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+            Console.WriteLine(e.StackTrace);
         }
     }
 

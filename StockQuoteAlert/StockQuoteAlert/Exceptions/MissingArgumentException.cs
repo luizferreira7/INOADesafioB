@@ -1,5 +1,4 @@
-namespace StockQuoteAlert.Exception;
-using System;
+namespace StockQuoteAlert.Exceptions;
 
 public class MissingArgumentException : Exception
 {

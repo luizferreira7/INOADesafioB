@@ -1,5 +1,5 @@
 using StockQuoteAlert.Constants;
-using StockQuoteAlert.Exception;
+using StockQuoteAlert.Exceptions;
 
 namespace StockQuoteAlert.Model.Validators;
 

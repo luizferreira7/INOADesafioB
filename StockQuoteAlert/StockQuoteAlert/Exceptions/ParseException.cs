@@ -1,4 +1,4 @@
-namespace StockQuoteAlert.Exception;
+namespace StockQuoteAlert.Exceptions;
 using System;
 
 public class ParseException : Exception
