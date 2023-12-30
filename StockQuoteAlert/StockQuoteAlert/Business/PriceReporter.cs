@@ -28,6 +28,10 @@ public class PriceReporter : IObserver
         {
             _sender.SendEmail(_emailSubject, _emailBody);
         }
+        else
+        {
+            Console.WriteLine("The target prices have not been met.");
+        }
     }
 
     private void checkBuyPrice(ISubject subject)
