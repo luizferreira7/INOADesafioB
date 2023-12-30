@@ -19,4 +19,10 @@ public class ValidationException : Exception
         ErrorCode = validationErrorCode.Code;
         Value = value;
     }
+    
+    public ValidationException(ValidationErrorCode validationErrorCode, Exception inner)
+        : base(validationErrorCode.Message, inner)
+    {
+        ErrorCode = validationErrorCode.Code;
+    }
 }
