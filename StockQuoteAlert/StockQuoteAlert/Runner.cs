@@ -12,6 +12,7 @@ public class Runner
 {
     private JsonConfig _jsonConfig;
     
+    
     public Runner()
     {
         _jsonConfig = new JsonConfig();
@@ -21,21 +22,24 @@ public class Runner
     {
         try
         {
-
             var parser = new Parser();
-
             var arguments = parser.ParseArgs(args);
 
-            var argumentsValidator = new ArgumentsValidator(arguments);
-
-            argumentsValidator.Validate();
+            var smtpValidator = new SMTPValidator();
+            smtpValidator.Validate();
+            
+            var dotEnvValidator = new DotEnvValidator();
+            dotEnvValidator.Validate();
 
             var envLoader = new DotEnvLoader();
 
             var apiUrl = envLoader.GetEnvByKey(EnvironmentVariables.API_URL);
             var apiPath = envLoader.GetEnvByKey(EnvironmentVariables.API_STOCK_PATH);
-
+            
             var paramMap = new Dictionary<string, string>();
+            
+            var argumentsValidator = new ArgumentsValidator(arguments, apiUrl, apiPath);
+            argumentsValidator.Validate();
 
             paramMap.Add(Params.STOCK_PARAM, arguments.Stock);
 
@@ -58,9 +62,9 @@ public class Runner
 
     private async Task Routine(StockPriceDTO stockPriceDto, string apiUrl, string apiPath, Dictionary<string, string> paramMap)
     {
-        var resquestHandler = new ResquestHandler();
+        var requestHandler = new RequestHandler();
 
-        var jsonString = await resquestHandler.MakeRequest(apiUrl, apiPath, paramMap);
+        var jsonString = await requestHandler.MakeRequest(apiUrl, apiPath, paramMap);
     
         var stock = JsonSerializer.Deserialize<StockPriceDTO>(jsonString, _jsonConfig._caseInsensitiveSerializerSettings) 
                     ?? throw new InvalidOperationException("Value cannot be null");

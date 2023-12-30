@@ -5,7 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f88ccee4-9f0d-4579-9829-c11f8171af0b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../StockQuoteAlert/Model/Validators/DotEnvValidator.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StockQuoteAlert/Model/Validators/SMTPValidator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../MockAPI/MockAPI/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../MockAPI/MockAPI/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../StockQuoteAlert/Business/ResquestHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../StockQuoteAlert/Business/RequestHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../StockQuoteAlert/Constants/ValidationErrorCode.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../StockQuoteAlert/Constants/ValidationErrorCode.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../StockQuoteAlert/Exceptions/ValidationException.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../StockQuoteAlert/Exceptions/ValidationException.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../StockQuoteAlert/Model/Validators/ArgumentsValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../StockQuoteAlert/Model/Validators/ArgumentsValidator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../StockQuoteAlert/Runner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../StockQuoteAlert/Runner.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Tests/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Tests/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/RequestHandlerTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/RequestHandlerTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/ValidatorTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/ValidatorTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,7 +26,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/../StockQuoteAlert/Business/ResquestHandler.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../StockQuoteAlert/Model/Validators/ArgumentsValidator.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../StockQuoteAlert/Utility/DotEnvLoader.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
@@ -60,6 +70,7 @@
       <workItem from="1703857306507" duration="9329000" />
       <workItem from="1703878312967" duration="2046000" />
       <workItem from="1703943939293" duration="850000" />
+      <workItem from="1703963522997" duration="772000" />
     </task>
     <servers />
   </component>
