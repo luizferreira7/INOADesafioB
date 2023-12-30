@@ -38,7 +38,7 @@ Para resolver o desafio, optei por usar a linguagem C#, e criei um Console app, 
 
 ## Aplicação
 
-A aplicação exige que um arquivo [.env](../blob/main/env/.env) cujo modelo segue abaixo, seja criado na raiz do programa para que as informações da API e do SMTP sejam carregadas:
+A aplicação exige que um arquivo [.env](../main/env/.env) cujo modelo segue abaixo, seja criado na raiz do programa para que as informações da API e do SMTP sejam carregadas:
 
 ```
 API_URL=
@@ -76,7 +76,7 @@ Primeira procurei uma API gratuita que eu pudesse utilizar para a tarefa porém 
 
 Para isso também utilizei C# e criei uma WebAPI simples, cujo endpoint me inspirei no da HGBrasil.
 
-Também tive problemas para encontrar um dataset que tivesse com variações diárias, só consegui encontrar dados com os valores de abertura, fechamento, minimo e maximo de um dia, sendo assim decidi criar um [script](../blob/main/scripts/txttocsv.py) em python que lia esses dados para criar um dataset com os dados de cada ação para pelo menos um dia do mês de 1 a 31 garantido que independente do dia que o programa executar retornara um valor para o ativo.
+Também tive problemas para encontrar um dataset que tivesse com variações diárias, só consegui encontrar dados com os valores de abertura, fechamento, minimo e maximo de um dia, sendo assim decidi criar um [script](../main/scripts/txttocsv.py) em python que lia esses dados para criar um dataset com os dados de cada ação para pelo menos um dia do mês de 1 a 31 garantido que independente do dia que o programa executar retornara um valor para o ativo.
 
 Dados obtidos de:
 
