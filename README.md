@@ -11,7 +11,9 @@ O preço de referência para venda
 O preço de referência para compra
 Ex.
 
-> stock-quote-alert.exe PETR4 22.67 22.59
+``` bash 
+stock-quote-alert.exe PETR4 22.67 22.59
+```
 
 Ele deve ler de um arquivo de configuração com:
 
@@ -29,3 +31,75 @@ Em outras palavras, dada a cotação de PETR4 abaixo.
 Toda vez que o preço for maior que linha-azul, um e-mail deve ser disparado aconselhando a venda.
 
 Toda vez que o preço for menor que linha-vermelha, um e-mail deve ser disparado aconselhando a compra.
+
+# Solução
+
+Para resolver o desafio, optei por usar a linguagem C#, e criei um Console app, utilizando a IDE Rider da JetBrains.
+
+## Aplicação
+
+A aplicação exige que um arquivo [.env](../blob/main/env/.env) cujo modelo segue abaixo, seja criado na raiz do programa para que as informações da API e do SMTP sejam carregadas:
+
+```
+API_URL=
+API_STOCK_PATH=
+
+SMTP_SERVER=
+SMTP_PORT=
+
+SMTP_USER=
+SMTP_PASSWORD=
+
+SMTP_SENDER=
+SMTP_RECEIVER=
+```
+
+Para rodar a aplicação execute o seguinte comando:
+``` bash 
+> ./StockQuoteAlert $ATIVO_DESEJADO $VALOR_VENDA $VALOR_COMPRA
+```
+Exemplos:
+
+macOS/Linux
+``` bash 
+./StockQuoteAlert PETR4 22.67 22.59
+```
+
+Windows
+``` bash 
+StockQuoteAlert.exe PETR4 22.67 22.59
+```
+
+## API Escolhida
+
+Primeira procurei uma API gratuita que eu pudesse utilizar para a tarefa porém não consegui encontrar nenhuma que fosse gratuita e sem limites de requisições, por tanto decidi criar uma MockAPI com dados extraidos da bolsa, para poder testar a aplicação.
+
+Para isso também utilizei C# e criei uma WebAPI simples, cujo endpoint me inspirei no da HGBrasil.
+
+Também tive problemas para encontrar um dataset que tivesse com variações diárias, só consegui encontrar dados com os valores de abertura, fechamento, minimo e maximo de um dia, sendo assim decidi criar um [script](../blob/main/scripts/txttocsv.py) em python que lia esses dados para criar um dataset com os dados de cada ação para pelo menos um dia do mês de 1 a 31 garantido que independente do dia que o programa executar retornara um valor para o ativo.
+
+Dados obtidos de:
+
+> http://bvmf.bmfbovespa.com.br/InstDados/SerHist/COTAHIST_A2023.ZIP
+
+O script pode ser rodado da seguinte forma:
+
+``` bash 
+python txttocsv.py < COTAHIST_A2023.TXT
+```
+
+Para calcular o valor e criar uma variação artificial implementei uma lógica que randomiza o preço fazendo ele variar entre o minimo e o maximo do dia em que ocorreu.
+
+## Detalhes da Implementação
+
+Para criar a aplicação utilizei o pattern do Observer que pode ser encontrado nos seguintes links:
+
+> https://refactoring.guru/design-patterns/observer
+
+> https://refactoring.guru/design-patterns/observer/csharp/example
+
+Assim a aplicação se separa em duas partes:
+
+1. Lê os argumentos passados, realiza as validações necessárias e prepara as classes necessárias para o funcionamento da aplicação.
+
+2. Rotina executada a cada 1 minuto que realiza uma requisição HTTP para obter o preço atualizado do ativo e então verificar se o valor ultrapassa um dos limites desejados, enviando um e-mail em caso positivo.
