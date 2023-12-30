@@ -4,7 +4,6 @@ public class StockPriceDTO : ISubject
 {
     public string? Stock { get; set; }
     public double? Price { get; set; }
-    public string? Status { get; set; }
     
     private List<IObserver> _observers = new List<IObserver>();
  
@@ -17,16 +16,15 @@ public class StockPriceDTO : ISubject
         Stock = stock;
     }
 
-    public StockPriceDTO(string stock, double price, string status)
+    public StockPriceDTO(string stock, double price)
     {
         Stock = stock;
         Price = price;
-        Status = status;
     }
     
     public override string ToString()
     {
-        return $"Stock: {Stock}, Price: {Price}, Status: {Status}";
+        return $"Stock: {Stock}, Price: {Price}";
     }
 
     public void Attach(IObserver observer)

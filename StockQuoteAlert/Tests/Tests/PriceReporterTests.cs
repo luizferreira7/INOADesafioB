@@ -50,7 +50,7 @@ public class PriceReporterTests
     public void PriceReporterTest_NoTargetPriceReached_MustAssertFalse()
     {
         var arguments = new Arguments(PRET4, SELLPRICE, BUYPRICE);
-        var stock = new StockPriceDTO(PRET4, SELLPRICE, "");
+        var stock = new StockPriceDTO(PRET4, SELLPRICE);
 
         var mockPriceReporter = new MockPriceReporter(arguments);
         
@@ -67,7 +67,7 @@ public class PriceReporterTests
     public void PriceReporterTest_SellTargetPriceReached_MustAssertTrue()
     {
         var arguments = new Arguments(PRET4, SELLPRICE, BUYPRICE);
-        var stock = new StockPriceDTO(PRET4, SELLPRICE, "");
+        var stock = new StockPriceDTO(PRET4, SELLPRICE);
 
         var mockPriceReporter = new MockPriceReporter(arguments);
         
@@ -86,7 +86,7 @@ public class PriceReporterTests
     public void PriceReporterTest_BuyTargetPriceReached_MustAssertTrue()
     {
         var arguments = new Arguments(PRET4, SELLPRICE, BUYPRICE);
-        var stock = new StockPriceDTO(PRET4, SELLPRICE, "");
+        var stock = new StockPriceDTO(PRET4, SELLPRICE);
 
         var mockPriceReporter = new MockPriceReporter(arguments);
         
