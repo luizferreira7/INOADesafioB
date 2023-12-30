@@ -51,7 +51,7 @@ public class Runner
 
             while (true)
             {
-                Console.WriteLine();
+                Console.WriteLine("\n");
                 Console.WriteLine(DateTime.Now);
                 await Routine(stockPriceDto, apiUrl, apiPath, paramMap);
                 Thread.Sleep(1000 * 60);

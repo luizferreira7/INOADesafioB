@@ -38,7 +38,7 @@ public class RequestHandler
         }
         
         var jsonString = await response.Content.ReadAsStringAsync();
-        Console.WriteLine($"API response: {jsonString}");
+        Console.Write($"API response: {jsonString}");
         return jsonString;
     }
 

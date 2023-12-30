@@ -29,20 +29,18 @@ public class StockPriceDTO : ISubject
 
     public void Attach(IObserver observer)
     {
-        Console.WriteLine("Subject: Attached an observer.");
         _observers.Add(observer);
+        Console.Write("Stock Price: Attached an observer.");
     }
 
     public void Detach(IObserver observer)
     {
         _observers.Remove(observer);
-        Console.WriteLine("Subject: Detached an observer.");
+        Console.Write("Stock Price: Detached an observer.");
     }
 
     public void Notify()
     {
-        Console.WriteLine("Subject: Notifying observers...");
-
         foreach (var observer in _observers)
         {
             observer.Update(this);

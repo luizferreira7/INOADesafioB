@@ -30,7 +30,7 @@ public class PriceReporter : IObserver
         }
         else
         {
-            Console.WriteLine("The target prices have not been met.");
+            Console.Write("The target prices have not been met.");
         }
     }
 
