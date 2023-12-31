@@ -15,12 +15,12 @@ public class PriceReporterTests
     private const double PRICE_TO_SELL = 22.89;
     private const string EMAIL_SUBJECT_TO_SELL = "PETR4 Sell Alert";
     private const string EMAIL_BODY_TO_SELL = $"The selected stock PETR4 has reached the target sell price.\n\n " +
-                                              $"Current price: 22,89, Sell price: 22,67";
+                                              $"Target price: 22,67,\n Current price: 22,89";
     
     private const double PRICE_TO_BUY = 22.19;
     private const string EMAIL_SUBJECT_TO_BUY = "PETR4 Buy Alert";
     private const string EMAIL_BODY_TO_BUY = $"The selected stock PETR4 has reached the target buy price.\n\n " +
-                                              $"Current price: 22,19, Buy price: 22,59";
+                                              $"Target price: 22,59,\n Current price: 22,19";
     
     private class MockSender : Sender
     {

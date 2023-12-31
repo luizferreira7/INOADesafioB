@@ -43,7 +43,7 @@ public class PriceReporter : IObserver
             Console.WriteLine("Time to buy.");
             _emailSubject = $"{_arguments.Stock} Buy Alert";
             _emailBody = $"The selected stock {_arguments.Stock} has reached the target buy price.\n\n " +
-                         $"Current price: {stockPriceDto.Price}, Buy price: {_arguments.BuyPrice}";
+                         $"Target price: {_arguments.BuyPrice},\n Current price: {stockPriceDto.Price}";
             _targetReached = true;
         }
     }
@@ -57,7 +57,7 @@ public class PriceReporter : IObserver
             Console.WriteLine("Time to sell.");
             _emailSubject = $"{_arguments.Stock} Sell Alert";
             _emailBody = $"The selected stock {_arguments.Stock} has reached the target sell price.\n\n " +
-                         $"Current price: {stockPriceDto.Price}, Sell price: {_arguments.SellPrice}";
+                         $"Target price: {_arguments.SellPrice},\n Current price: {stockPriceDto.Price}";
             _targetReached = true;
         }
     }
