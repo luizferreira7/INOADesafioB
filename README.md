@@ -70,7 +70,20 @@ Windows
 StockQuoteAlert.exe PETR4 22.67 22.59
 ```
 
-## API Escolhida
+## Flask API
+
+Depois de muita pesquisa achei uma biblioteca do python chamada yfinance que consegue obter o preço de um ativo da bolsa em tempo real, optei então fazer uma nova API para executar um script e obter o valor mais preciso.
+
+Para implementar essa API decidi utilizar o Flask pois era uma API bem simples e rápida, sendo assim desnecessário utilizar um framework como Django.
+
+Para rodar a API basta executar:
+
+``` bash
+pip install -r requirements.txt
+flask run -h localhost -p 5132
+```
+
+## Mock API
 
 Primeira procurei uma API gratuita que eu pudesse utilizar para a tarefa porém não consegui encontrar nenhuma que fosse gratuita e sem limites de requisições, por tanto decidi criar uma MockAPI com dados extraidos da bolsa, para poder testar a aplicação.
 
