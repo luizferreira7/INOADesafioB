@@ -34,11 +34,11 @@ Toda vez que o preço for menor que linha-vermelha, um e-mail deve ser disparado
 
 # Solução
 
-Para resolver o desafio, optei por usar a linguagem C#, e criei um Console app, utilizando a IDE Rider da JetBrains.
+Para resolver o desafio, optei por usar a linguagem C# e utilizei a IDE Rider da JetBrains.
 
 ## Aplicação
 
-A aplicação exige que um arquivo [.env](../main/env/.env) cujo modelo segue abaixo, seja criado na raiz do programa para que as informações da API e do SMTP sejam carregadas:
+A aplicação exige que um arquivo [.env](../main/env/.env) seja criado no mesmo diretório do programa para que as informações da API e do SMTP sejam carregadas, o modelo segue abaixo:
 
 ```
 API_URL=
@@ -70,26 +70,35 @@ Windows
 StockQuoteAlert.exe PETR4 22.67 22.59
 ```
 
-## Flask API
+## Detalhes da Implementação do App
 
-Depois de muita pesquisa achei uma biblioteca do python chamada yfinance que consegue obter o preço de um ativo da bolsa em tempo real, optei então fazer uma nova API para executar um script e obter o valor mais preciso.
+Para criar a aplicação utilizei o pattern do Observer que pode ser encontrado nos seguintes links:
 
-Para implementar essa API decidi utilizar o Flask pois era uma API bem simples e rápida, sendo assim desnecessário utilizar um framework como Django.
+> https://refactoring.guru/design-patterns/observer
 
-Para rodar a API basta executar:
+> https://refactoring.guru/design-patterns/observer/csharp/example
 
-``` bash
-pip install -r requirements.txt
-flask run -h localhost -p 5132
-```
+Assim a aplicação se separa em três partes:
+
+1. Start: Lê os argumentos passados, realiza as validações necessárias e prepara as classes para o funcionamento da aplicação.
+
+2. Routine: Executada a cada 1 minuto, realiza uma requisição HTTP para obter o preço atualizado do ativo e notifica o observer.
+
+3. Observer: Verifica se o valor ultrapassa um dos limites desejados, enviando um e-mail em caso positivo.
 
 ## Mock API
 
-Primeira procurei uma API gratuita que eu pudesse utilizar para a tarefa porém não consegui encontrar nenhuma que fosse gratuita e sem limites de requisições, por tanto decidi criar uma MockAPI com dados extraidos da bolsa, para poder testar a aplicação.
+Primeiramente procurei uma API gratuita que eu pudesse utilizar para a tarefa porém não consegui encontrar nenhuma que fosse gratuita e sem limites de requisições, por tanto decidi criar uma MockAPI com dados extraidos da bolsa, para poder testar a aplicação.
 
-Para isso também utilizei C# e criei uma WebAPI simples, cujo endpoint me inspirei no da HGBrasil.
+Para isso também utilizei C# e criei uma WebAPI simples, cujo endpoint me inspirei no endpoint da HGBrasil, apenas removendo a key e alterando o parametro symbol para stock, no caso seria bem fácil adaptar o programa para rodar em qualquer API.
 
-Também tive problemas para encontrar um dataset que tivesse com variações diárias, só consegui encontrar dados com os valores de abertura, fechamento, minimo e maximo de um dia, sendo assim decidi criar um [script](../main/scripts/txttocsv.py) em python que lia esses dados para criar um dataset com os dados de cada ação para pelo menos um dia do mês de 1 a 31 garantido que independente do dia que o programa executar retornara um valor para o ativo.
+HGBrasil:
+> /finance/stock_price?key=SUA-CHAVE&symbol=embr3
+
+MockAPI:
+> /finance/stock_price?stock=PETR4
+
+Também tive problemas para encontrar um dataset que tivesse variações diárias, só consegui encontrar dados com os valores de abertura, fechamento, minimo e maximo de um dia, sendo assim criei um [script](../main/scripts/txttocsv.py) em python que convertia esses dados, para em um dataset com os dados de cada ação para pelo menos um dia do mês de 1 a 31 garantindo para quase todos os ativos que independente do dia que o programa executar ele retornará um valor.
 
 Dados obtidos de:
 
@@ -103,16 +112,19 @@ python txttocsv.py < COTAHIST_A2023.TXT
 
 Para calcular o valor e criar uma variação artificial implementei uma lógica que randomiza o preço fazendo ele variar entre o minimo e o maximo do dia em que ocorreu.
 
-## Detalhes da Implementação
+## Flask API
 
-Para criar a aplicação utilizei o pattern do Observer que pode ser encontrado nos seguintes links:
+Depois de muita pesquisa achei uma biblioteca do python chamada yfinance que consegue obter o preço de um ativo da bolsa em tempo real, criei então uma API para executar um script e obter o valor mais preciso.
 
-> https://refactoring.guru/design-patterns/observer
+Para implementar essa API decidi utilizar o Flask pois era uma API bem simples e rápida, sendo assim desnecessário utilizar um framework como Django.
 
-> https://refactoring.guru/design-patterns/observer/csharp/example
+Para rodar a API basta executar:
 
-Assim a aplicação se separa em duas partes:
+``` bash
+pip install -r requirements.txt
+flask run -h localhost -p 5132
+```
 
-1. Lê os argumentos passados, realiza as validações necessárias e prepara as classes necessárias para o funcionamento da aplicação.
+Endpoint:
+> /finance/stock_price?stock=PETR4
 
-2. Rotina executada a cada 1 minuto que realiza uma requisição HTTP para obter o preço atualizado do ativo e então verificar se o valor ultrapassa um dos limites desejados, enviando um e-mail em caso positivo.
